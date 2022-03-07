@@ -1,0 +1,14 @@
+1. 
+docker exec -it mongodb bash
+mongo -u mongodbuser -p your_mongodb_root_password
+use <dbname>  # Ex. use flaskdb
+db.createUser({user: 'mongodbuser', pwd: 'your_mongodb_root_password', roles: [{role: 'readWrite', db: 'flaskdb'}]})
+mongo -u mongodbuser -p your_mongodb_password  --authenticationDatabase flaskdb
+// Volume
+exit
+docker volume ls
+// delete all volume
+docker volume rm $(docker volume ls -q)
+// create image
+docker build -t sface
+docker run -d -p 8080:5000 sface
